@@ -1,0 +1,54 @@
+= form_for @post do |f|
+  .form-row
+
+    .col-md-6
+      .form-group
+        = f.label :title, "Title", class: "font-weight-bold fa-sm"
+        = f.text_field :title, class: "form-control py-4", style: "border:none; border-radius: 8px 8px 8px 8px; background-color: #e4e4e4;", placeholder: "Enter Title", required: true
+
+    .col-md-6
+      .form-group
+        = f.label :price,"Price", class: "font-weight-bold fa-sm"
+        = f.number_field :price, class: "form-control py-4", style: "border:none; border-radius: 8px 8px 8px 8px; background-color: #e4e4e4;", placeholder: "Enter Price",required: true
+
+    .col-md-6
+      .form-group
+        = f.label :gender,"Gender", class: "font-weight-bold fa-sm"
+        br
+        = f.label :gender_male, "Male"
+        | &nbsp;
+        = f.radio_button :gender, :male
+        | &nbsp;
+        = f.label :gender_female, "Female"
+        | &nbsp;
+        = f.radio_button :gender, :female
+
+    .col-md-6
+      .form-group
+        = f.label :hobby,"Hobby", class: "font-weight-bold fa-sm"
+        br
+        - hobby = ["football","basketball","volley"]
+        = f.select :hobby, hobby.map {|h| [h.titleize,h]}, {prompt: "Select a hobby"}, class: "form-control"
+
+    .col-md-6
+      .form-group
+        = f.label :foods, "Foods", class: "font-weight-bold fa-sm"
+        br
+        - foods = ["momo", "chowmein", "burger"]
+        - foods.each do |food|
+          = f.label "foods_#{food}", food.titleize
+          = f.check_box :foods, {class: "mx-1", multiple: true}, food,nil
+
+    .col-md-6
+      .form-group
+        = f.label :sus_date,"Sus Date", class: "font-weight-bold fa-sm"
+        = f.date_field :sus_date, class: "form-control py-4", style: "border:none; border-radius: 8px 8px 8px 8px; background-color: #e4e4e4;",placeholder: "Enter Sus Date", required: true
+
+    .col-md-6
+      .form-group
+        = f.label :image, "Image", class: "font-weight-bold fa-sm"
+        br
+        = f.file_field :image
+  
+  .actions.text-center
+    = f.submit class: "btn btn-outline-secondary px-5"

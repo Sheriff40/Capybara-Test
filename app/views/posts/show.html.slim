@@ -1,0 +1,25 @@
+.col-md-12
+  .card
+    .card-header.card-header-primary
+      h4.card-title  Post Details
+    .card-body
+      .form-row
+      
+        .col-md-6
+          p
+            strong Title:&nbsp;
+            = @post.title
+      
+        .col-md-6
+          p
+            strong Price:&nbsp;
+            = @post.price
+      
+        .col-md-6
+          p
+            strong Sus Date:&nbsp;
+            = @post.sus_date
+
+        .col-md-6
+          - if @post.image.attached?
+            = image_tag(@post.image, size: "310x250", alt: "Bruce Lee")

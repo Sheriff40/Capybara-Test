@@ -1,0 +1,50 @@
+.col-12
+  .row
+    .col-12.px-2.mt-3
+      h3.text-secondary.mb-0 style=("color: #f36774 !important;")  Posts
+      .row.mt-5
+        .col-12
+          i.fa.fa-search.mr-2
+          .search-filter.d-inline
+          = link_to new_post_path, class: "btn btn-outline-primary btn-sm float-right" do
+            i.fas.fa-plus
+            |&nbsp;Add Post
+
+          table.table.table-hover.bg-white.shadow.p-3.mb-5.bg-white.rounded.text-center#example-table
+            thead.bg-light.text-secondary
+              tr
+                th S.N.
+              
+                th Title
+              
+                th Price
+              
+                th Sus Date
+
+                th Image
+
+                th Actions
+
+            tbody
+              - @posts.each.with_index(1) do |data,index|
+                tr
+                  td = index
+                
+                  td = data.title
+                
+                  td = data.price
+                
+                  td = data.sus_date
+
+                  td
+                    - if data.image.attached?
+                      = image_tag(data.image, size: "210x150", alt: "Bruce Lee")
+
+                  td
+                    span
+                      = link_to data do
+                        i.fa.fa-eye.text-secondary
+                      = link_to edit_post_path(data) do
+                        i.fa.fa-edit.text-primary.mx-1
+                      = link_to data, data: { confirm: 'Are you sure?' }, method: :delete, class: "tester" do
+                        i.fa.fa-trash.text-danger
