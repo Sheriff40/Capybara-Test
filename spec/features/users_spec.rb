@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.feature "Users", driver: :selenium_chrome do
 
+  given!(:user) { User.create!(email: 'sheriffhussain40@gmail.com',password: 'password') }
+
   scenario 'Signing in with correct credentials' do
 
     visit '/users/sign_in'
